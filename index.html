@@ -3,47 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>South Central Railway | Navigation Version 4</title>
+<title>South Central Railway — Responsive Navigation V5</title>
 <style>
-:root{--navy:#063a70;--blue:#0758b7;--orange:#f29a38;--ink:#173b5e;--line:#dce7f2}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f1f7fb;color:var(--ink)}a{color:inherit;text-decoration:none}
-.utility{background:#052e58;color:#fff;padding:8px 2.5%;font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.mast{background:#fff;display:grid;grid-template-columns:minmax(260px,1fr) minmax(300px,1.4fr);align-items:center;gap:22px;padding:14px 2.5%;border-bottom:1px solid #dce7f2}
-.brand{width:100%;max-width:400px;max-height:88px;object-fit:contain;object-position:left center}
-.mast-right{display:grid;grid-template-columns:minmax(170px,.8fr) minmax(250px,1.2fr);align-items:center;gap:14px}
-.viksit{display:block;width:100%;max-width:360px;max-height:82px;object-fit:contain;object-position:center}
-.pm{display:flex;align-items:center;gap:12px;min-width:0}.pm img{width:82px;height:86px;object-fit:contain;object-position:center bottom}.pm p{font-size:12px;line-height:1.45;margin:0;color:#34465c}
-.pm-search{grid-column:2;display:flex;width:100%;max-width:350px;justify-self:end}.pm-search input{min-width:0;flex:1;padding:9px;border:1px solid #cbd7e4;border-radius:5px 0 0 5px}.pm-search button{border:0;background:var(--blue);color:#fff;padding:0 15px;border-radius:0 5px 5px 0}
-.nav{position:relative;z-index:50;display:flex;align-items:stretch;justify-content:center;gap:5px;flex-wrap:wrap;padding:8px 2%;background:linear-gradient(110deg,#052d55,#0758a0);color:#fff;border-bottom:3px solid var(--orange);box-shadow:0 5px 16px #062f5730}
-.nav-item{position:relative;flex:1 1 auto;min-width:125px}.nav-trigger{width:100%;min-height:43px;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 9px;border:1px solid #ffffff25;border-radius:6px;background:#ffffff0b;color:#fff;font:700 12px/1.25 Arial,sans-serif;text-align:center;cursor:pointer}
-.nav-item:hover>.nav-trigger,.nav-item:focus-within>.nav-trigger,.nav-item.open>.nav-trigger{background:#fff;color:var(--navy);border-color:#ffb45c}
-.chevron{font-size:10px}
-.submenu{position:absolute;left:0;top:calc(100% + 5px);min-width:245px;width:max-content;max-width:min(330px,90vw);padding:7px;background:#fff;color:#153b60;border:1px solid #d8e5f2;border-top:3px solid var(--orange);border-radius:7px;box-shadow:0 14px 32px #001a3040;display:none;z-index:60}
-.nav-item:hover>.submenu,.nav-item:focus-within>.submenu,.nav-item.open>.submenu{display:block}
-.submenu a,.submenu .branch-label{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 11px;border-radius:4px;color:#153b60;font-size:12px;font-weight:600;line-height:1.3;white-space:normal}
-.submenu a:before{content:"›";color:#0b67b1;font-size:17px;font-weight:bold}
-.submenu a:hover,.submenu a:focus-visible{background:#edf5ff;color:#0758b7;outline:none}
-.submenu .branch{position:relative}.submenu .branch-label:after{content:"›";color:#0758b7;font-size:17px}.submenu .branch>.submenu{left:calc(100% - 2px);top:-5px;display:none;max-height:72vh;overflow:auto}.submenu .branch:hover>.submenu,.submenu .branch:focus-within>.submenu{display:block}
-.submenu.about-menu{max-height:76vh;overflow-y:auto}
-.hero{min-height:290px;background:linear-gradient(90deg,#052c52 0%,#052c52df 42%,#052c5240 100%),url('assets/hero-train.jpg') center/cover no-repeat;display:flex;align-items:center;padding:30px 4%;color:#fff}
-.hero-copy{max-width:680px}.eyebrow{font-size:11px;letter-spacing:2px;color:#ffd18b}.hero h1{font-size:clamp(30px,4vw,48px);line-height:1.08;margin:12px 0}.hero h1 span{color:#ff9b3c}.hero p{font-size:16px;line-height:1.5}.pillars{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;font-weight:bold}.pillars span:before{content:"◆ ";color:#ffb12e}
-.quick{margin:-18px 2.5% 20px;position:relative;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 5px 18px #193a5716;overflow:hidden}.quick a{text-align:center;padding:15px 7px;font-size:12px;font-weight:bold;border-right:1px solid #e3edf6;border-bottom:1px solid #e3edf6;color:#06417e}.quick b{display:block;font-size:22px;color:var(--blue);margin-bottom:5px}
-.note{margin:0 2.5% 24px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:7px;font-size:13px;line-height:1.6}.note strong{color:#0758b7}
-@media(max-width:850px){.mast{grid-template-columns:1fr;gap:12px}.mast-right{grid-template-columns:minmax(140px,.8fr) minmax(230px,1.2fr)}.nav{justify-content:flex-start}.nav-item{flex:1 1 145px}.submenu .branch>.submenu{left:0;top:100%;position:relative;max-width:100%;box-shadow:none;border-top-width:1px}.submenu .branch:hover>.submenu,.submenu .branch:focus-within>.submenu{display:block}}
-@media(max-width:560px){.mast-right{grid-template-columns:1fr}.viksit{max-width:320px;justify-self:start}.pm-search{grid-column:1;justify-self:stretch}.nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px}.nav-item{min-width:0}.nav-trigger{font-size:11px;padding:9px 5px}.submenu{position:static;width:100%;max-width:none;min-width:0;margin-top:4px;box-shadow:0 5px 13px #001a3018}.submenu .branch>.submenu{display:none}.submenu .branch:focus-within>.submenu,.submenu .branch:hover>.submenu{display:block}.hero{min-height:300px}.hero h1{font-size:32px}.quick{grid-template-columns:repeat(2,1fr);margin-top:0}}
+:root{--navy:#073763;--navy2:#0a4e88;--blue:#0866bd;--saffron:#f39a35;--ink:#17334d;--muted:#60758a;--line:#dce6ef;--canvas:#f3f7fb;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+.utility{min-height:31px;background:#05294b;color:#e9f2fb;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px clamp(14px,3vw,42px);font-size:11px}
+.utility a{color:#fff}
+.mast{background:#fff;border-bottom:1px solid var(--line);padding:13px clamp(14px,3vw,42px);display:grid;grid-template-columns:minmax(210px,1fr) minmax(260px,1fr) minmax(250px,1fr);align-items:center;gap:22px}
+.brand-wrap{min-width:0}.brand{display:block;width:100%;max-width:370px;max-height:82px;object-fit:contain;object-position:left center}
+.viksit-wrap{display:flex;align-items:center;justify-content:center;min-width:0;min-height:70px}
+.viksit{display:block;width:100%;max-width:370px;height:auto;max-height:88px;object-fit:contain;object-position:center}
+.pm-wrap{display:grid;grid-template-columns:76px minmax(0,1fr);gap:11px;align-items:center;min-width:0}
+.pm-photo{display:block;width:76px;height:80px;object-fit:contain;object-position:center bottom}
+.pm-copy{font-size:11px;line-height:1.45;color:#42556a}.pm-copy strong{display:block;color:#17334d;margin-top:4px}
+.search{grid-column:2/4;justify-self:end;display:flex;width:min(100%,400px);margin-top:-3px}
+.search input{width:100%;min-width:0;border:1px solid #ccd8e5;border-right:0;border-radius:6px 0 0 6px;padding:9px 12px;font-size:12px;outline-color:var(--blue)}
+.search button{border:0;border-radius:0 6px 6px 0;padding:0 16px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer}
+.nav-shell{position:relative;z-index:100;background:linear-gradient(105deg,var(--navy),var(--navy2));border-bottom:3px solid var(--saffron);box-shadow:0 4px 14px #05294b20}
+.nav-top{display:flex;align-items:stretch;justify-content:center;gap:3px;padding:7px clamp(8px,2vw,26px);max-width:1600px;margin:auto}
+.nav{display:flex;flex:1;align-items:stretch;justify-content:center;gap:4px;min-width:0}
+.nav-item{position:static;flex:1 1 0;min-width:0}
+.nav-trigger{height:44px;width:100%;border:1px solid #ffffff24;border-radius:7px;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 10px;font:700 12px/1.25 Arial,sans-serif;text-align:center;cursor:pointer;transition:background .18s,color .18s,border .18s}
+.nav-trigger:hover,.nav-trigger:focus-visible,.nav-item.open>.nav-trigger{background:#fff;color:var(--navy);border-color:#fff;outline:none}
+.nav-trigger .chevron{font-size:10px;transition:transform .18s}
+.nav-item.open>.nav-trigger .chevron{transform:rotate(180deg)}
+.submenu{display:none}
+.nav-item.open>.submenu{display:grid}
+.nav>.nav-item>.submenu{position:absolute;left:clamp(10px,2vw,28px);right:clamp(10px,2vw,28px);top:calc(100% + 3px);max-width:1500px;margin:0 auto;padding:22px;background:#fff;color:var(--ink);border:1px solid var(--line);border-top:4px solid var(--saffron);border-radius:0 0 12px 12px;box-shadow:0 20px 40px #06274735;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;max-height:min(70vh,620px);overflow:auto}
+.nav>.nav-item>.submenu.about-menu{grid-template-columns:repeat(4,minmax(0,1fr))}
+.submenu>a,.submenu .branch>a,.submenu .branch-label{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:6px;color:#173b5e;background:#f6f9fc;border:1px solid #e8eef5;font-size:12px;font-weight:600;line-height:1.35;min-height:39px}
+.submenu>a:before{content:"↗";color:var(--blue);font-size:12px;font-weight:bold;order:2}
+.submenu>a:hover,.submenu .branch>a:hover,.submenu>a:focus-visible,.submenu .branch>a:focus-visible{background:#eaf4ff;border-color:#b8d8f7;color:#0758b7;outline:none}
+.submenu .branch{min-width:0}
+.submenu .branch>a:after{content:"＋";color:var(--blue);font-size:13px;font-weight:bold;flex:0 0 auto}
+.submenu .branch.expanded>a:after{content:"−"}
+/* Nested levels are inline accordions inside the mega panel: no off-screen flyouts. */
+.submenu .branch>.submenu{display:none;position:static;width:auto;max-width:none;max-height:none;overflow:visible;padding:7px 0 0 12px;margin:0 0 4px 5px;border:0;border-left:2px solid #c9def2;border-radius:0;box-shadow:none;background:transparent;grid-template-columns:1fr;gap:5px}
+.submenu .branch.expanded>.submenu{display:grid}
+.submenu .branch>.submenu a{font-size:11px;min-height:34px;padding:8px 10px;background:#fff}
+.submenu .branch>.submenu .branch>.submenu{margin-left:8px}
+.menu-column{min-width:0}
+.menu-heading{font-size:10px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#70859a;margin:0 0 10px;padding:0 4px 8px;border-bottom:1px solid var(--line)}
+.nav-item:not(:first-child)>.submenu{grid-template-columns:repeat(3,minmax(0,1fr));}
+.nav-item:nth-child(4)>.submenu{grid-template-columns:repeat(3,minmax(0,1fr))}
+.nav-item>.submenu>a{align-self:start}
+.mobile-menu-button{display:none}
+.hero{min-height:300px;display:flex;align-items:center;padding:36px clamp(18px,5vw,70px);background:linear-gradient(90deg,#052b4f 0%,#052b4fe8 40%,#052b4f50 100%),url('assets/hero-train.jpg') center/cover no-repeat;color:#fff}
+.hero-copy{max-width:700px}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:700;color:#ffd08d}
+.hero h1{font-size:clamp(30px,4vw,48px);line-height:1.08;margin:12px 0}
+.hero h1 span{color:#ff9d43}.hero p{font-size:15px;line-height:1.6;margin:12px 0 18px}
+.pillars{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:11px;font-weight:bold}.pillars span:before{content:"◆ ";color:#ffb13c}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);margin:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 6px 18px #193a570b}
+.quick a{text-align:center;padding:18px 10px;font-size:12px;font-weight:700;color:#084780;border-right:1px solid #e4edf5}.quick a:last-child{border:0}
+.quick b{display:block;font-size:22px;color:var(--blue);margin-bottom:6px}
+.intro{margin:28px auto;padding:0 clamp(16px,3vw,42px);max-width:1400px}
+.intro-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;font-size:13px;line-height:1.6;color:#52687c}
+.intro-card strong{color:#0758b7}
+footer{background:#05294b;color:#dbe8f5;padding:18px clamp(14px,3vw,42px);font-size:11px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media(max-width:1000px){
+ .mast{grid-template-columns:1fr 1fr;gap:12px}.brand{max-width:330px}.viksit-wrap{grid-column:2;grid-row:1}.pm-wrap{grid-column:1;grid-row:2}.search{grid-column:2;grid-row:2;align-self:center;margin:0}
+ .nav-top{display:block;padding:7px 12px}.nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+ .nav>.nav-item>.submenu,.nav>.nav-item>.submenu.about-menu{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ .utility{font-size:10px}.utility span:last-child{display:none}
+ .mast{grid-template-columns:1fr 1fr;padding:12px;gap:10px}.brand{max-width:100%;max-height:60px}.viksit-wrap{min-height:58px}.viksit{max-height:62px}.pm-wrap{grid-column:1;grid-row:2;grid-template-columns:46px minmax(0,1fr);gap:7px}.pm-photo{width:46px;height:52px}.pm-copy{font-size:9px}.search{grid-column:2;grid-row:2;width:100%}.search input{font-size:11px;padding:8px}
+ .nav-top{padding:7px 9px}.nav{display:none;grid-template-columns:1fr;gap:5px}.nav-shell.mobile-open .nav{display:grid}
+ .mobile-menu-button{display:flex;align-items:center;justify-content:space-between;width:100%;padding:12px 14px;border:0;background:transparent;color:#fff;font-weight:700;font-size:13px;cursor:pointer}
+ .nav-item{min-width:0}.nav-trigger{height:auto;min-height:42px;justify-content:space-between;text-align:left;padding:11px 13px;font-size:12px}
+ .nav>.nav-item>.submenu,.nav>.nav-item>.submenu.about-menu,.nav-item:not(:first-child)>.submenu,.nav-item:nth-child(4)>.submenu{position:static;max-height:none;overflow:visible;margin:5px 0 8px;padding:10px;display:none;grid-template-columns:1fr;gap:7px;border-radius:8px;box-shadow:none;border-top-width:3px}
+ .nav>.nav-item.open>.submenu{display:grid}
+ .submenu .branch>.submenu{display:none;position:static;padding:6px 0 0 10px;margin:4px 0 0 7px;grid-template-columns:1fr}
+ .submenu .branch.expanded>.submenu{display:grid}
+ .hero{min-height:290px;padding:28px 20px}.hero h1{font-size:32px}.hero p{font-size:13px}.quick{grid-template-columns:repeat(2,1fr)}.quick a{border-bottom:1px solid #e4edf5}.quick a:nth-child(2){border-right:0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="utility"><span>Government of India &nbsp; | &nbsp; Ministry of Railways</span><span>Skip to Content &nbsp; | &nbsp; Screen Reader Access &nbsp; | &nbsp; हिन्दी</span></div>
+<div class="utility"><span>Government of India &nbsp; | &nbsp; Ministry of Railways</span><span>Skip to Content &nbsp; | &nbsp; Screen Reader Access &nbsp; | &nbsp; <a href="https://scr.indianrailways.gov.in/">Official SCR Website ↗</a></span></div>
 <header class="mast">
-  <a href="https://scr.indianrailways.gov.in/" aria-label="South Central Railway home"><img class="brand" src="assets/railway-brand.jpg" alt="South Central Railway"></a>
-  <div class="mast-right">
-    <img class="viksit" src="https://raw.githubusercontent.com/gopakumarala-dev/South-Central-Railway/main/assets/viksit-brand.png" alt="Viksit Bharat 2047">
-    <div class="pm"><img src="assets/pm-header.jpg" alt="Prime Minister of India"><p>“A Viksit Bharat with world-class infrastructure for a stronger India.”<br><b>— Narendra Modi<br>Prime Minister</b></p></div>
-    <form class="pm-search" action="https://scr.indianrailways.gov.in/" method="get"><input name="search" aria-label="Search railway information" placeholder="Search railway information…"><button type="submit" aria-label="Search">⌕</button></form>
-  </div>
+  <div class="brand-wrap"><a href="https://scr.indianrailways.gov.in/" aria-label="South Central Railway home"><img class="brand" src="./assets/railway-brand.jpg" alt="South Central Railway"></a></div>
+  <div class="viksit-wrap"><img class="viksit" src="./assets/viksit-brand.png" alt="Viksit Bharat 2047"></div>
+  <div class="pm-wrap"><img class="pm-photo" src="./assets/pm-header.jpg" alt="Prime Minister of India"><div class="pm-copy">Developed India · Stronger Railways · Brighter Tomorrow<strong>— Prime Minister of India</strong></div></div>
+  <form class="search" action="https://scr.indianrailways.gov.in/" method="get"><input name="search" aria-label="Search railway information" placeholder="Search railway information…"><button type="submit" aria-label="Search">⌕</button></form>
 </header>
-<nav class="nav" aria-label="Main navigation">
+<div class="nav-shell" id="navShell">
+  <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-expanded="false" aria-controls="mainNav"><span>☰ &nbsp; Explore SCR</span><span>＋</span></button>
+<nav class="nav" id="mainNav" aria-label="Main navigation">
   <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">About Us <span class="chevron">▾</span></button><div class="submenu about-menu">
     <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&id=0,1,283">History</a>
     <div class="branch"><a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&id=0,1,263">Organizational Structure <span>›</span></a><div class="submenu">
@@ -119,29 +169,54 @@
     <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&id=0,7">Official Contact Numbers</a><a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&id=0,7">SCR Telephone Directory</a><a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&id=0,7">Vigilance Organisation</a>
   </div></div>
 </nav>
+</div>
 <main id="content">
 <section class="hero"><div class="hero-copy"><div class="eyebrow">SOUTH CENTRAL RAILWAY • INDIAN RAILWAYS</div><h1>South Central Railway<br>Connecting India to<br><span>Viksit Bharat 2047</span></h1><p>Modern Railways for a Stronger, Prosperous and Inclusive Bharat</p><div class="pillars"><span>World-class Infrastructure</span><span>Better Passenger Services</span><span>Greener Railways</span><span>Jobs &amp; Economic Growth</span></div></div></section>
-<section class="quick"><a href="https://www.indianrail.gov.in/"><b>🚆</b>Train Enquiry</a><a href="https://www.indianrail.gov.in/"><b>🎟</b>PNR Status</a><a href="https://www.irctc.co.in/"><b>▣</b>Reservations</a><a href="https://railmadad.indianrailways.gov.in/"><b>♙</b>Passenger Help</a></section>
-<section class="note"><strong>Navigation Version 4</strong><br>This is a separate test version for checking the redesigned three-level menus and the Viksit Bharat image path. It does not replace your live website. Existing local image assets such as the railway logo and hero image must remain in the same <code>assets</code> folder when testing. Some legacy SCR subpages do not expose distinct stable URLs in the source available for this draft; those menu items point to their official SCR parent section rather than to invented URLs.</section>
+<section class="quick"><a href="https://www.indianrail.gov.in/"><b>🚆</b>Train Enquiry</a><a href="https://www.indianrail.gov.in/"><b>▰</b>PNR Status</a><a href="https://www.irctc.co.in/"><b>▣</b>Reservations</a><a href="https://railmadad.indianrailways.gov.in/"><b>♙</b>Passenger Help</a></section>
+<section class="intro"><div class="intro-card"><strong>Version 5 preview</strong> — redesigned responsive navigation. Desktop uses a clean mega-menu with nested sections opening inside the panel; mobile uses a compact expandable menu. The Viksit Bharat image uses the local GitHub Pages asset path <code>./assets/viksit-brand.png</code>. Keep the existing image file in the repository’s <code>assets</code> folder.</div></section>
 </main>
-<footer class="utility"><span>South Central Railway · Ministry of Railways</span><span><a href="https://scr.indianrailways.gov.in/">Official SCR Website</a></span></footer>
+<footer><span>South Central Railway · Ministry of Railways</span><a href="https://scr.indianrailways.gov.in/">Official SCR Website ↗</a></footer>
 <script>
 (() => {
-  const items=[...document.querySelectorAll('.nav-item')];
-  items.forEach(item=>{
-    const trigger=item.querySelector(':scope > .nav-trigger');
-    trigger.addEventListener('click',()=>{
-      const open=!item.classList.contains('open');
-      items.forEach(other=>{
-        other.classList.remove('open');
-        const b=other.querySelector(':scope > .nav-trigger');
-        if(b)b.setAttribute('aria-expanded','false');
-      });
-      if(open){item.classList.add('open');trigger.setAttribute('aria-expanded','true');}
-    });
-  });
-  document.addEventListener('click',e=>{if(!e.target.closest('.nav'))items.forEach(item=>{item.classList.remove('open');const b=item.querySelector(':scope > .nav-trigger');if(b)b.setAttribute('aria-expanded','false');});});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')items.forEach(item=>{item.classList.remove('open');const b=item.querySelector(':scope > .nav-trigger');if(b)b.setAttribute('aria-expanded','false');});});
+ const shell=document.getElementById('navShell');
+ const mobileButton=document.getElementById('mobileMenuButton');
+ const nav=document.getElementById('mainNav');
+ const topItems=[...nav.querySelectorAll(':scope > .nav-item')];
+ const closeTop=(except=null)=>topItems.forEach(item=>{if(item!==except){item.classList.remove('open');const b=item.querySelector(':scope > .nav-trigger');if(b)b.setAttribute('aria-expanded','false');}});
+ mobileButton.addEventListener('click',()=>{
+   const open=shell.classList.toggle('mobile-open');
+   mobileButton.setAttribute('aria-expanded',String(open));
+   mobileButton.querySelector('span:last-child').textContent=open?'−':'＋';
+ });
+ topItems.forEach(item=>{
+   const trigger=item.querySelector(':scope > .nav-trigger');
+   const panel=item.querySelector(':scope > .submenu');
+   if(!trigger||!panel)return;
+   trigger.setAttribute('aria-expanded','false');
+   trigger.addEventListener('click',()=>{
+     const opening=!item.classList.contains('open');
+     closeTop(item);
+     item.classList.toggle('open',opening);
+     trigger.setAttribute('aria-expanded',String(opening));
+   });
+ });
+ nav.querySelectorAll('.branch').forEach(branch=>{
+   const link=branch.querySelector(':scope > a');
+   const panel=branch.querySelector(':scope > .submenu');
+   if(!link||!panel)return;
+   link.setAttribute('aria-expanded','false');
+   link.addEventListener('click',e=>{
+     // First click expands nested items; Ctrl/Meta-click still follows the official parent link.
+     if(!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)){
+       e.preventDefault();
+       const expanded=branch.classList.toggle('expanded');
+       link.setAttribute('aria-expanded',String(expanded));
+     }
+   });
+ });
+ document.addEventListener('click',e=>{if(!e.target.closest('#navShell'))closeTop();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeTop();shell.classList.remove('mobile-open');mobileButton.setAttribute('aria-expanded','false');}});
+ window.addEventListener('resize',()=>{if(window.innerWidth>650){shell.classList.remove('mobile-open');mobileButton.setAttribute('aria-expanded','false');}});
 })();
 </script>
 </body>
