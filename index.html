@@ -17,14 +17,24 @@
 .pm-search{grid-column:2;grid-row:2;justify-self:end;display:flex;align-items:center;width:min(100%,390px);gap:0;margin:0}
 .pm-search input{min-width:0;flex:1;height:34px;border:1px solid #cbd7e4;border-right:0;border-radius:5px 0 0 5px;padding:0 11px;font:12px Arial,sans-serif;color:#193a5a;outline-offset:2px}
 .pm-search button{height:34px;min-width:42px;border:1px solid #0758b7;background:#0758b7;color:#fff;border-radius:0 5px 5px 0;font-size:19px;cursor:pointer}
-/* Modern navigation only */
-.nav{position:relative;z-index:20;display:flex;align-items:stretch;justify-content:center;gap:5px;overflow-x:auto;white-space:nowrap;padding:7px clamp(8px,2.5%,28px);background:linear-gradient(110deg,#052d55 0%,#064783 55%,#0758a0 100%);color:#fff;box-shadow:0 5px 16px #062f5730;border-top:1px solid #ffffff24;border-bottom:3px solid #f29a38;scrollbar-width:thin}
-.nav a{position:relative;display:flex;align-items:center;justify-content:center;flex:1 0 auto;min-height:43px;padding:11px clamp(12px,1.4vw,23px);border:1px solid #ffffff24;border-radius:6px;background:#ffffff0b;color:#fff;font-size:12px;line-height:1.25;font-weight:700;text-align:center;white-space:normal;transition:background .18s ease,transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-.nav a:hover,.nav a:focus-visible{background:#fff;color:#063a70;border-color:#ffb45c;box-shadow:0 4px 12px #001a3038;transform:translateY(-1px);outline:none}
-.nav a:active{transform:translateY(0)}
-.nav a:focus-visible{outline:2px solid #ffbd69;outline-offset:2px}
-@media(max-width:900px){.nav{justify-content:flex-start;gap:5px;padding:7px 10px}.nav a{flex:0 0 auto;max-width:210px}}
-@media(max-width:600px){.nav{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;overflow:visible;white-space:normal;padding:8px 10px}.nav a{min-height:42px;max-width:none;padding:10px 8px;font-size:11px}.nav a:last-child{grid-column:1/-1}}
+/* Modern navigation with functional dropdown submenus */
+.nav{position:relative;z-index:30;display:flex;align-items:stretch;justify-content:center;gap:5px;overflow:visible;padding:7px clamp(8px,2.5%,28px);background:linear-gradient(110deg,#052d55 0%,#064783 55%,#0758a0 100%);color:#fff;box-shadow:0 5px 16px #062f5730;border-top:1px solid #ffffff24;border-bottom:3px solid #f29a38}
+.nav-item{position:relative;flex:1 1 auto;min-width:0}
+.nav-trigger{width:100%;min-height:43px;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px clamp(9px,1.1vw,18px);border:1px solid #ffffff24;border-radius:6px;background:#ffffff0b;color:#fff;font:700 12px/1.25 Arial,Helvetica,sans-serif;text-align:center;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease}
+.nav-trigger .chevron{font-size:10px;opacity:.85;transition:transform .18s ease}
+.nav-item:hover>.nav-trigger,.nav-item:focus-within>.nav-trigger,.nav-item.open>.nav-trigger{background:#fff;color:#063a70;border-color:#ffb45c;box-shadow:0 4px 12px #001a3038}
+.nav-item.open .chevron,.nav-item:hover .chevron,.nav-item:focus-within .chevron{transform:rotate(180deg)}
+.submenu{position:absolute;left:0;top:calc(100% + 7px);min-width:235px;width:max-content;max-width:min(310px,90vw);padding:7px;background:#fff;color:#153b60;border:1px solid #d8e5f2;border-top:3px solid #f29a38;border-radius:7px;box-shadow:0 14px 32px #001a3040;display:none;z-index:50;white-space:normal}
+.submenu:before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
+.submenu-about{max-height:min(76vh,690px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9bb8d2 #eef4fa}
+.nav-item:hover>.submenu,.nav-item:focus-within>.submenu,.nav-item.open>.submenu{display:block;animation:menuIn .15s ease-out}
+.submenu a{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:4px;color:#153b60;font-size:12px;font-weight:600;line-height:1.3;white-space:normal;transition:background .15s ease,color .15s ease}
+.submenu a:before{content:"›";color:#0b67b1;font-size:17px;font-weight:700;line-height:10px}
+.submenu a:hover,.submenu a:focus-visible{background:#edf5ff;color:#0758b7;outline:none}
+@keyframes menuIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.submenu,.nav-trigger,.nav-trigger .chevron{animation:none;transition:none}}
+@media(max-width:900px){.nav{justify-content:flex-start;gap:5px;padding:7px 10px;flex-wrap:wrap}.nav-item{flex:1 1 145px}.nav-trigger{min-height:42px;padding:10px 8px}.submenu{min-width:210px}}
+@media(max-width:600px){.nav{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;overflow:visible;padding:8px 10px}.nav-item{min-width:0}.nav-trigger{min-height:43px;padding:9px 6px;font-size:11px}.submenu{position:static;width:100%;max-width:none;min-width:0;margin-top:5px;box-shadow:0 5px 13px #001a3018;border-top-width:2px}.nav-item:last-child{grid-column:1/-1}.submenu a{padding:10px;font-size:11px}}
 .hero{min-height:315px;background:linear-gradient(90deg,#052c52 0%,#052c52e8 33%,#052c5240 72%),url('assets/hero-train.jpg') center/cover no-repeat;display:flex;align-items:center;padding:30px 3.5%;color:#fff}
 .hero-copy{max-width:660px}.eyebrow{font-size:11px;letter-spacing:2px;color:#ffd18b}.hero h1{font-size:clamp(32px,4vw,51px);line-height:1.04;margin:12px 0}.hero h1 span{color:var(--orange)}.hero p{font-size:16px}.pillars{display:flex;flex-wrap:wrap;gap:13px;font-size:11px;font-weight:bold}.pillars span:before{content:"◆ ";color:#ffb12e}
 .quick{position:relative;margin:-20px 2.5% 16px;display:grid;grid-template-columns:repeat(8,1fr);background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 5px 18px #193a5716;overflow:hidden}.quick a{text-align:center;padding:13px 4px;font-size:11px;font-weight:bold;border-right:1px solid #e3edf6;color:#06417e}.quick b{display:block;font-size:22px;color:var(--blue);margin-bottom:5px}
@@ -59,14 +69,85 @@
 </div>
 </header>
 <nav class="nav" aria-label="Main navigation">
-<a href="#about">About Us</a>
-<a href="#footer">Citizen Charter</a>
-<a href="#quick">Trains &amp; Timings</a>
-<a href="#quick">Passenger Services / Freight Information</a>
-<a href="#news">Public Information</a>
-<a href="#footer">Tenders</a>
-<a href="#footer">Contact Us</a>
+  <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">About Us <span class="chevron" aria-hidden="true">▾</span></button><div class="submenu submenu-about">
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">History</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">SCR on Social Media</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">Organizational Structure</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">System Map 2026</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">Departments</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">Divisions</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">Workshops/ Loco Sheds</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">Training Centres</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">Officer Quarters</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">PREM Offices</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">SCR Scouts &amp; Guides</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">SOP</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">RRB-SCR</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">RRC-SCR</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">For Railway Personnel</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">Photo Gallery</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">SCR Civil Defence</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,1">E-Office &amp; Software</a>
+  </div></div>
+  <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">Citizen Charter <span class="chevron" aria-hidden="true">▾</span></button><div class="submenu">
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,2">Citizen Charter</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,2">Passenger Commitments</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,2">Service Standards</a>
+    <a href="https://railmadad.indianrailways.gov.in/">Passenger Grievances — RailMadad</a>
+  </div></div>
+  <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">Trains &amp; Timings <span class="chevron" aria-hidden="true">▾</span></button><div class="submenu">
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,7,275">MMTS Train Timings</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,7,275">Trains at a Glance</a>
+    <a href="https://www.indianrail.gov.in/">Train Arrival / Departure &amp; Enquiry</a>
+    <a href="https://www.indianrail.gov.in/">PNR Enquiry</a>
+    <a href="https://www.indianrail.gov.in/">Fare Enquiry</a>
+    <a href="https://www.irctc.co.in/">Seat Availability &amp; Booking</a>
+  </div></div>
+  <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">Passenger Services / Freight Information <span class="chevron" aria-hidden="true">▾</span></button><div class="submenu">
+    <a href="https://www.irctc.co.in/">Internet Ticket Booking</a>
+    <a href="https://www.indianrail.gov.in/">Live Train Status &amp; Enquiry</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,3">Station Details &amp; Passenger Facilities</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,3">Tourist Information</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,3">Divyangjan Facilities</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,3">Freight Information &amp; Services</a>
+    <a href="https://railmadad.indianrailways.gov.in/">Passenger Helpdesk — RailMadad</a>
+  </div></div>
+  <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">Public Information <span class="chevron" aria-hidden="true">▾</span></button><div class="submenu">
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,5">Press Releases &amp; News</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,5">RTI Information</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,5">Public Grievances</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,5">Results &amp; Notifications</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,5">Downloads &amp; Forms</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,5">For Railway Personnel</a>
+  </div></div>
+  <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">Tenders <span class="chevron" aria-hidden="true">▾</span></button><div class="submenu">
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,6,1031">SCR Tenders</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,6,1031">Awarded Tenders</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,6,1031">Engineering Tender Information</a>
+    <a href="https://ireps.gov.in/">e-Procurement — IREPS</a>
+  </div></div>
+  <div class="nav-item"><button class="nav-trigger" type="button" aria-expanded="false">Contact Us <span class="chevron" aria-hidden="true">▾</span></button><div class="submenu">
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,7">Official Contact Numbers</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,7">SCR Telephone Directory</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,7">Vigilance Organisation</a>
+    <a href="https://scr.indianrailways.gov.in/view_section.jsp?lang=0&amp;id=0,7">Feedback &amp; Help</a>
+  </div></div>
 </nav>
+<script>
+(function(){
+  const items=[...document.querySelectorAll('.nav-item')];
+  items.forEach(item=>{
+    const trigger=item.querySelector('.nav-trigger');
+    trigger.addEventListener('click',()=>{
+      const shouldOpen=!item.classList.contains('open');
+      items.forEach(other=>{other.classList.remove('open');other.querySelector('.nav-trigger').setAttribute('aria-expanded','false');});
+      if(shouldOpen){item.classList.add('open');trigger.setAttribute('aria-expanded','true');}
+    });
+  });
+  document.addEventListener('click',event=>{if(!event.target.closest('.nav'))items.forEach(item=>{item.classList.remove('open');item.querySelector('.nav-trigger').setAttribute('aria-expanded','false');});});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')items.forEach(item=>{item.classList.remove('open');item.querySelector('.nav-trigger').setAttribute('aria-expanded','false');});});
+})();
+</script>
 <main id="content"><section class="hero" id="about"><div class="hero-copy"><div class="eyebrow">SOUTH CENTRAL RAILWAY • INDIAN RAILWAYS</div><h1>South Central Railway<br>Connecting India to<br><span>Viksit Bharat 2047</span></h1><p>Modern Railways for a Stronger, Prosperous and Inclusive Bharat</p><div class="pillars"><span>World-class Infrastructure</span><span>Better Passenger Services</span><span>Greener Railways</span><span>Jobs & Economic Growth</span></div></div></section>
 <section class="quick" id="quick"><a href="https://www.irctc.co.in/"><b>🚆</b>Train Enquiry</a><a href="https://www.indianrail.gov.in/"><b>🎟</b>PNR Status</a><a href="https://www.indianrail.gov.in/"><b>◷</b>Train Timings</a><a href="https://scr.indianrailways.gov.in/"><b>🚈</b>MMTS Services</a><a href="https://www.irctc.co.in/"><b>▣</b>Reservations</a><a href="#freight"><b>📦</b>Freight & Parcel</a><a href="#footer"><b>♙</b>Station Information</a><a href="#tourism"><b>🛕</b>Tourism & Pilgrimage</a></section>
 <section class="wrap" id="leadership"><div class="leaders"><article class="leader"><div class="portrait"><img src="assets/minister-railways-portrait.jpg" alt="Minister for Railways"></div><div class="text"><h2>Union Minister for Railways</h2><p class="tag">“Implementing the Prime Minister’s vision of Viksit Bharat in mission mode.”</p><h3>Shri Ashwini Vaishnaw</h3><p>Minister for Railways<br>Government of India</p><a class="btn" href="https://www.india.gov.in/">View Profile →</a></div></article>
